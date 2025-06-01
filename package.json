@@ -1,31 +1,28 @@
 {
-    "name": "0g-storage-auto-bot",
-    "version": "1.0.0",
-    "description": "Automated bot for interacting with the 0G Storage Network to maximize airdrop potential",
-    "main": "index.js",
-    "scripts": {
-        "start": "node index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-        "0g",
-        "storage",
-        "blockchain",
-        "testnet",
-        "automation"
-    ],
-    "author": "Makera1n",
-    "license": "MIT",
-    "dependencies": {
-        "axios": "^1.9.0",
-        "blessed": "^0.1.81",
-        "chalk": "^5.4.1",
-        "dotenv": "^16.5.0",
-        "ethers": "^6.14.3",
-        "figlet": "^1.8.1",
-        "https-proxy-agent": "^7.0.6"
-    },
-    "engines": {
-        "node": ">=16.0.0"
-    }
+  "name": "0glabs-storage-auto-bot",
+  "version": "1.0.0",
+  "description": "An automated bot for daily image uploads to 0G Storage Scan.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "0g",
+    "storage",
+    "bot",
+    "automation",
+    "web3",
+    "blockchain",
+    "airdrop"
+  ],
+  "author": "EARNINGDROP",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "blessed": "^0.1.81",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.1",
+    "figlet": "^1.7.0",
+    "https-proxy-agent": "^7.0.4"
+  }
 }
