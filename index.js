@@ -6,7 +6,7 @@ const fs = require('fs');
 const { HttpsProxyAgent } = require('https-proxy-agent');
 const blessed = require('blessed'); // Import blessed
 const figlet = require('figlet'); // Import figlet
-const chalk = require('chalk');   // Import chalk (though we'll convert to blessed tags)
+// const chalk = require('chalk'); // Removed as it's not needed with blessed tags
 
 // --- Global UI Elements and State ---
 let screen;
@@ -471,7 +471,7 @@ async function uploadToStorage(imageData, wallet, walletIndex) {
             const tx = await wallet.sendTransaction(txParams);
             const txLink = `${EXPLORER_URL}${tx.hash}`;
             logger.info(`Transaction sent: ${tx.hash}`);
-            logger.info(`Explorer Link: ${txLink}`);
+            logger.info(`Explorer Link: {underline}${txLink}{/underline}`); // Added underline tag
 
             logger.loading(`Waiting for transaction confirmation (up to ${TIMEOUT_SECONDS}s)...`);
             let receipt;
@@ -782,33 +782,28 @@ ${figletBanner.split('\n').map(line => `{center}{cyan-fg}{bold}${line}{/bold}{/c
                 break;
             case 3: // Clear Logs
                 logger.clear();
-                logger.info('Transaction logs cleared.');
                 menuBox.focus(); // Return focus to menu
                 break;
             case 4: // Exit
                 logger.bye('Exiting application...');
-                return process.exit(0);
+                process.exit(0);
+                break;
         }
+        screen.render();
     });
 
-    screen.append(statusBox);
-    screen.append(walletBox);
-    screen.append(logBox);
-    screen.append(menuBox);
+    // Set initial focus
+    menuBox.focus();
 
-    // Initial data load and UI update
+    // Initial loads and updates
+    logger.banner(); // Display initial banner message
     loadPrivateKeys();
     loadProxies();
-    checkNetworkSync(); // Check network sync status
-    updateStatusDisplay(); // Initial display of status bar content
+    updateStatusDisplay();
+    updateWalletInfo(); // Initial update of wallet info
 
-    menuBox.focus(); // Focus on the menu by default
     screen.render();
 }
 
-// --- Main Execution ---
-async function main() {
-    initializeTUI();
-}
-
-main();
+// Start the TUI
+initializeTUI();
